@@ -1,0 +1,118 @@
+crt=[]
+prc=[]
+opt=0
+while opt!=6:
+    opt=int(input('\nWelcome to Pella Store!'
+          '\nPlease enter the number corresponding to your desired option'
+          '\n1-Buy item'
+          '\n2-View cart'
+          '\n3-Remove from cart'
+          '\n4-Make purchase' 
+          '\n5-About us'
+          '\n6-Exit app\n'))
+    if opt==1:
+        buy=int(input('\nHere is a list of items in our store:'
+                  '\n1-Rice ($15)'
+                  '\n2-Milk ($10)'
+                  '\n3-Sugar ($1)'
+                  '\n4-Salt ($1)'
+                  '\n5-Bread ($10)'
+                  '\n6-Tuna ($5)'
+                  '\n7-Yoghurt ($6)\n\n'
+                  'Enter your option number: '))
+        if buy==1:
+            thng='rice'
+            qnt='kilos'
+            singqnt='kilo'
+            price=15
+        elif buy==2:
+            thng='milk'
+            qnt='tins'
+            singqnt='tin'
+            price=10
+        elif buy==3:
+            thng='sugar'
+            qnt='packets'
+            singqnt='packet'
+            price=1
+        elif buy==4:
+            thng='salt'
+            qnt='packets'
+            singqnt='packet'
+            price=1
+        elif buy==5:
+            thng='bread'
+            qnt='loaves'
+            singqnt='loaf'
+            price=10
+        elif buy==6:
+            thng='tuna'
+            qnt='cans'
+            singqnt='can'
+            price=5
+        elif buy==7:
+            thng='yoghurt'
+            qnt='cups'
+            singqnt='cup'
+            price=6
+        quant=int(input(f'Enter how many {qnt} of {thng} you would like to buy: '))
+        if quant>0:
+            if quant==1:
+                crt.append(f'{quant} {singqnt} of {thng}')
+            else:
+                crt.append(f'{quant} {qnt} of {thng}')
+            prc.append(price*quant)
+    elif opt==2:
+        if crt==[]:
+            print('There is nothing in your cart as of this moment')
+        else:
+            for i in crt:
+                print(i)
+    elif opt==3:
+        if crt==[]:
+            print('There is nothing in your cart as of this moment')
+        else:
+            print('Here are the items in your cart:')
+            for i in crt:
+                print(i)
+            rmv=input('Enter the exact title of the item to be removed: ')
+            frprc=crt.index(rmv)
+            prc.pop(frprc)
+            crt.remove(rmv)
+    elif opt==4:
+        if crt==[]:
+            print('There is nothing in your cart as of this moment '
+                  'hence you cannot procede to checkout')
+        else:
+            sure=input('Are you sure you want to procede to checkout? (Y/N) ')
+            if sure=='Y':
+                print('You bought:')
+                for i in crt:
+                    print(i)
+                ir=0
+                for i in prc:
+                    ir=ir+i
+                print(f'Your total is ${ir}')
+                while True:
+                    pay=int(input('Enter the amount paid: '))
+                    if pay>=ir:
+                        print(f'Your change is ${pay-ir}'
+                            '\nThank you for shopping with us!')
+                        exit(1)
+                    else:
+                        print('The amount you entered is too low')
+            elif sure=='N':
+                print('Okay then, enjoy your shopping!')
+    elif opt==5:
+        print('\nPella Store is an online venture which aims'
+              ' to include practicallity and ease in all areas. '
+              'Founded in 2000, Pella Store is an online convenience '
+              'store that allows users to buy many household items at '
+              'discounted prices. One-third of the profit earned by'
+              ' our shareholders goes towards providing jobs, food, '
+              'education and housing for all manner of people. '
+              'Thank you for taking the time to read our bio. '
+              '\nEnjoy your shopping!')
+    else:
+        print('INVALID USER INPUT')
+        exit(1)
